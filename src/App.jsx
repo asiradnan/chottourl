@@ -32,9 +32,11 @@ function App() {
 
   async function shorten() {
     // if (longUrl)
-    const response = await axios.post("https://u.asiradnan.com/api/v1/shorten/",
-      {"actual_url": longUrl}
+    const response = await axios.post(
+      "https://u.asiradnan.com/api/v1/shorten/",
+      { "actual_url": longUrl }
     )
+    setShortUrl("https://u.asiradnan.com/"+response.data.short_code)
     console.log(response.data)
     // setShortUrl(response)
   }
@@ -44,9 +46,11 @@ function App() {
       <h1>CHOTTO URL</h1>
       {isLoading ? <h1>Loading</h1> : <h1>Not loading</h1>}
       <section>
-        <input type="link" placeholder='https://example.com/a-long-url' value={longUrl} onChange={(e) => setLongUrl(e.target.value)}></input>
+        <input type="text" placeholder='https://example.com/a-long-url' value={longUrl} onChange={(e) => setLongUrl(e.target.value)}></input>
         <button onClick={shorten}>Shorten</button>
-        {/* <p>{short_url}</p> */}
+        {shortUrl !== '' &&
+          <p><a target="_blank" href={shortUrl}>{shortUrl}</a> </p>
+        }
       </section>
       <section>
         Active Links: {stats.active_links}
