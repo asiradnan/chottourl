@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Copy, ExternalLink } from 'lucide-react'
+import { Copy, ExternalLink, Github } from 'lucide-react'
 
 function App() {
   const [isLoading, setLoading] = useState(false)
@@ -80,10 +80,19 @@ function App() {
 
       <main className="relative z-10 min-h-screen flex flex-col justify-between p-6 md:p-12">
         {/* Header */}
-        <div className="flex items-start">
+        <div className="flex justify-between items-start">
           <div className="text-xs uppercase tracking-widest text-white/60">
             URL Shortener / V2.0
           </div>
+          <a 
+            href="https://github.com/asiradnan/chottourl" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-yellow-400 transition-colors group"
+          >
+            <Github className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+            <span className="text-xs uppercase tracking-widest">Source</span>
+          </a>
         </div>
 
         {/* Main Title */}
