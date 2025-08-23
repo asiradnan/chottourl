@@ -150,17 +150,17 @@ function App() {
                     </a>
                     <div className="flex gap-2">
                       <button
-                        onClick={copyToClipboard}
-                        className="p-2 hover:bg-white/10 transition-colors group relative"
-                        title="Copy to clipboard"
-                      >
-                        <Copy className="w-5 h-5" />
-                        {copied && (
-                          <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-green-500 text-black px-2 py-1 rounded">
-                            COPIED!
-                          </span>
-                        )}
-                      </button>
+  onClick={copyToClipboard}
+  className="p-2 hover:bg-white/10 transition-colors group relative text-gray-700 hover:text-gray-900"
+  title="Copy to clipboard"
+>
+  <Copy className="w-5 h-5" />
+  {copied && (
+    <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-green-500 text-black px-2 py-1 rounded">
+      COPIED!
+    </span>
+  )}
+</button>
                       <a
                         href={shortUrl}
                         target="_blank"
