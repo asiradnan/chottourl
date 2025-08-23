@@ -84,9 +84,9 @@ function App() {
           <div className="text-xs uppercase tracking-widest text-white/60">
             URL Shortener / V2.0
           </div>
-          <a 
-            href="https://github.com/asiradnan/chottourl" 
-            target="_blank" 
+          <a
+            href="https://github.com/asiradnan/chottourl"
+            target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-yellow-400 transition-colors group"
           >
@@ -106,16 +106,16 @@ function App() {
             </h1>
             <div className="w-full max-w-2xl mx-auto space-y-6">
               <div className="relative">
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder="PASTE YOUR LONG URL HERE"
-                  value={longUrl} 
+                  value={longUrl}
                   onChange={(e) => setLongUrl(e.target.value)}
                   className={`w-full bg-transparent border-2 ${error ? 'border-red-500' : 'border-white'} text-white placeholder-white/50 px-6 py-4 text-lg focus:outline-none focus:border-yellow-400 transition-colors uppercase tracking-wide font-mono`}
                 />
                 <div className="absolute -right-2 -bottom-2 w-4 h-4 bg-red-500"></div>
               </div>
-              
+
               {error && (
                 <div className="bg-red-500/10 border-2 border-red-500 p-4 relative">
                   <div className="text-red-500 font-black text-lg uppercase tracking-wider text-center">
@@ -126,7 +126,7 @@ function App() {
                 </div>
               )}
 
-              <button 
+              <button
                 onClick={shorten}
                 disabled={isLoading}
                 className="w-full bg-white text-black py-4 px-6 font-black text-xl uppercase tracking-wider hover:bg-yellow-400 hover:text-black transition-all duration-300 transform hover:scale-105 disabled:opacity-50 relative overflow-hidden group"
@@ -140,9 +140,9 @@ function App() {
               {shortUrl && (
                 <div className="bg-white/5 border border-white/20 p-6 relative">
                   <div className="flex items-center justify-between gap-4">
-                    <a 
-                      href={shortUrl} 
-                      target="_blank" 
+                    <a
+                      href={shortUrl}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 text-yellow-400 hover:text-white transition-colors font-mono text-lg break-all"
                     >
@@ -150,17 +150,17 @@ function App() {
                     </a>
                     <div className="flex gap-2">
                       <button
-  onClick={copyToClipboard}
-  className="p-2 hover:bg-white/10 transition-colors group relative text-gray-700 hover:text-gray-900"
-  title="Copy to clipboard"
->
-  <Copy className="w-5 h-5" />
-  {copied && (
-    <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-green-500 text-black px-2 py-1 rounded">
-      COPIED!
-    </span>
-  )}
-</button>
+                        onClick={copyToClipboard}
+                        className="p-2 hover:bg-white/10 transition-colors group relative text-gray-700 hover:text-gray-900"
+                        title="Copy to clipboard"
+                      >
+                        <Copy className="w-5 h-5" />
+                        {copied && (
+                          <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-green-500 text-black px-2 py-1 rounded">
+                            COPIED!
+                          </span>
+                        )}
+                      </button>
                       <a
                         href={shortUrl}
                         target="_blank"
@@ -190,7 +190,7 @@ function App() {
             </div>
             <div className="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400"></div>
           </div>
-          
+
           <div className="relative">
             <div className="text-4xl md:text-6xl font-black text-red-500">
               {stats.total_links}
@@ -200,7 +200,7 @@ function App() {
             </div>
             <div className="absolute -top-2 -right-2 w-3 h-3 bg-red-500"></div>
           </div>
-          
+
           <div className="relative">
             <div className="text-4xl md:text-6xl font-black text-blue-500">
               {stats.total_clicks}
