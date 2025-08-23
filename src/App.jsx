@@ -12,6 +12,7 @@ function App() {
   const [shortUrl, setShortUrl] = useState('')
   const [longUrl, setLongUrl] = useState('')
   const [copied, setCopied] = useState(false)
+  const [error, setError] = useState('')
 
   const fetchStats = async () => {
     try {
@@ -32,6 +33,7 @@ function App() {
   }, [])
 
   async function shorten() {
+    setError('')
     const urlRegex = /^(https?:\/\/)?(www\.)?([\w.-]+)\.([a-zA-Z]{2,6})([\/\w.-]*)*\/?(\?[\w=&.-]*)?(#[\w-]*)?$/
     if (longUrl.match(urlRegex)) {
       setLoading(true)
@@ -46,13 +48,14 @@ function App() {
       }
       catch (error) {
         console.log(error)
+        setError('FAILED TO SHORTEN URL')
       }
       finally {
         setLoading(false)
       }
     }
     else {
-      console.log("Invalid url")
+      setError('INVALID URL FORMAT')
     }
   }
 
@@ -77,11 +80,10 @@ function App() {
 
       <main className="relative z-10 min-h-screen flex flex-col justify-between p-6 md:p-12">
         {/* Header */}
-        <div className="flex justify-between items-start">
+        <div className="flex items-start">
           <div className="text-xs uppercase tracking-widest text-white/60">
             URL Shortener / V2.0
           </div>
-          
         </div>
 
         {/* Main Title */}
@@ -100,11 +102,21 @@ function App() {
                   placeholder="PASTE YOUR LONG URL HERE"
                   value={longUrl} 
                   onChange={(e) => setLongUrl(e.target.value)}
-                  className="w-full bg-transparent border-2 border-white text-white placeholder-white/50 px-6 py-4 text-lg focus:outline-none focus:border-yellow-400 transition-colors uppercase tracking-wide font-mono"
+                  className={`w-full bg-transparent border-2 ${error ? 'border-red-500' : 'border-white'} text-white placeholder-white/50 px-6 py-4 text-lg focus:outline-none focus:border-yellow-400 transition-colors uppercase tracking-wide font-mono`}
                 />
                 <div className="absolute -right-2 -bottom-2 w-4 h-4 bg-red-500"></div>
               </div>
               
+              {error && (
+                <div className="bg-red-500/10 border-2 border-red-500 p-4 relative">
+                  <div className="text-red-500 font-black text-lg uppercase tracking-wider text-center">
+                    {error}
+                  </div>
+                  <div className="absolute -left-2 -top-2 w-4 h-4 bg-red-500"></div>
+                  <div className="absolute -right-2 -bottom-2 w-4 h-4 bg-red-500"></div>
+                </div>
+              )}
+
               <button 
                 onClick={shorten}
                 disabled={isLoading}
